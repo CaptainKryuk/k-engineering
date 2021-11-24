@@ -1,0 +1,36 @@
+.fade-enter-active,
+.fade-leave-active
+  transition: opacity 1s ease
+
+.fade-enter-from,
+.fade-leave-to
+  opacity: 0
+
+.leftslide-enter-active,
+.leftslide-leave-active
+  transition: 0.4s
+  transform: translateX(0%)
+
+.leftslide-enter-from,
+.leftslide-leave-to
+  transform: translateX(-100%)
+
+
+.rightslide-enter-active,
+.rightslide-leave-active
+  transition: 0.4s
+
+.rightslide-enter-from,
+.rightslide-leave-to
+  transform: translateX(200%)
+
+
+// toasts 
+.float-enter-from, .float-leave-to 
+  transform: translateX(400px)
+  opacity: 0
+
+
+.float-enter-to 
+  transform: translateX(0)
+  opacity: 1

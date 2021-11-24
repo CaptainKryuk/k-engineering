@@ -1,0 +1,27 @@
+# Default ignored files
+.idea
+backend/.idea/
+backend/.vscode/*
+.vscode
+backend/.env
+backend/venv
+frontend/node_modules/
+frontend/package-lock.json
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*/**/*.pyc
+migrations/
+
+*.log
+
+# Editor-based HTTP Client requests
+rest-client.private.env.json
+http-client.private.env.json
+/backend/run.py
+/backend/.idea/
+/backend/.vscode/
+/backend/initial.py
+/backend/static/

@@ -1,0 +1,168 @@
+$text: #2C303A
+$description: #5B606D
+$hint: #9FA2AB
+$line: #E7E8EA
+
+$accent: #5E3929
+$accent-hover: #C65748
+
+$padding: 20px
+
+// notifications
+$n_info: #007BC2
+$n_warning: #F0A92E
+$n_success: #22A67A
+
+
+*
+    padding: 0
+    margin: 0
+    font-family: 'Lato', sans-serif
+
+
+p, h1, h2, h3, h4, h5, span
+    color: $text
+
+a
+    text-decoration: none
+
+
+.bold
+    font-weight: bold
+
+// обычная кнопка
+.btn
+    padding: 15px 25px
+    border: none
+    border-radius: 3px
+    background: $accent
+    font-size: 18px
+    color: white
+    text-transform: uppercase
+    position: relative
+    cursor: pointer
+    transition: 0.3s
+    font-weight: 500
+
+    &.round
+        border-radius: 40px
+        text-transform: none
+
+    &.arrow
+        padding: 15px 75px 15px 25px
+
+    &.arrow::after
+        content: url('/static/img/arrow--right--white.svg')
+        width: 36px
+        position: absolute
+        margin-left: 20px
+        transition: 0.3s
+
+    &.arrow:hover
+        padding-right: 95px
+
+    &.arrow:hover::after
+        margin-left: 40px
+
+    &.full
+        width: 100%
+
+    &.icon
+        color: $description
+        padding-left: 50px
+        text-transform: none
+
+        img
+            left: 20px
+            position: absolute
+
+    &.glow
+        background: rgba($accent, 0.1)
+    
+    &.glow:hover
+        background: rgba($accent, 0.2)
+
+.btn:hover
+    background: darken($accent,10% )
+
+
+// ссылка обычная
+.link
+    font-weight: bold
+    color: $accent
+    cursor: pointer
+    transition: 0.3s
+    text-decoration: none
+
+.link:hover
+    color: darken($accent, 10%)
+    text-decoration: underline
+
+.btn_link
+    border-radius:30px
+    background: $accent
+    padding: 15px 20px
+    color: white
+
+    &.blocked
+        background: rgba($accent, 0.4)
+    
+    &.blocked:hover
+        background: rgba($accent, 0.4)
+        text-decoration: none
+
+// круглая кнопка с иконкой внутри
+.btn_circle_icon
+    border-radius: 50%
+    background: #F1F1F1
+    padding: 15px
+    position: relative
+    border: none
+    cursor: pointer
+    transition: 0.3s
+    display: flex
+    align-items: center
+
+.btn_circle_icon:hover
+    background: #cfcfcf
+
+.btn_circle_icon::after
+    position: relative
+    content: ' '
+    width: 18px
+    height: 18px
+    background-repeat: no-repeat
+    background-size: cover
+
+
+.like::after
+    background-image: url('/static/img/like--gray.svg')
+
+.cart::after
+    background-image: url('/static/img/cart--gray.svg')
+
+.plus::after
+    background-image: url('/static/img/plus--gray.svg')
+
+
+// кнопка с иконкой перед текстом
+.btn_icon
+    text-transform: none
+    padding-left: 45px
+
+    &.search::before
+        background-image: url('/static/img/search--white.svg')
+
+.btn_icon::before
+    position: absolute
+    content: ' '
+    width: 20px
+    height: 20px
+    background-repeat: no-repeat
+    background-size: cover
+    left: 15px
+
+
+// swiper settings
+.swiper-container
+    height: 100%
