@@ -72,16 +72,26 @@
 
 input::placeholder
   color: $hint
+  font-weight: normal
+
+.field_name
+  text-align: left
+  margin-bottom: 5px
+  font-size: 14px
+  color: $description
 
 .text_input
-  border-radius: 2px
+  border-radius: 3px
   border: 1px solid $line
   padding: 12px
   display: block
   background: white
   display: flex
-  margin-bottom: 15px
+  margin-bottom: 30px
   cursor: pointer
+
+  &.disabled
+    background-color: $line
 
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
@@ -108,11 +118,13 @@ input::placeholder
   &__content
     display: flex
     align-items: center
+    width: 100%
     input
       border: none
       background: none
       outline: 0
       width: 100%
+      font-weight: 600
 
 
 .select_input 
@@ -128,8 +140,8 @@ input::placeholder
     border: 1px solid $line
     border-radius: 2px
     cursor: pointer
-    // border-color: #F2994A
     background: white
+    font-weight: 600
 
     .icon
       margin-right: 10px
@@ -144,6 +156,7 @@ input::placeholder
         font-size: 14px
         color: $hint
         font-style: italic
+        font-weight: normal
 
       .text
         color: $description
@@ -179,6 +192,7 @@ input::placeholder
       .text
         padding-left: 15px
         color: $description
+        font-weight: 500
     
 
     .block:hover 
@@ -191,22 +205,189 @@ input::placeholder
 
     .selected:hover 
       background: #f0f0f0
-    
+
+
+
+// обычная кнопка
+.btn
+  padding: 15px 25px
+  border: none
+  border-radius: 3px
+  background: $accent
+  font-size: 18px
+  color: white
+  position: relative
+  cursor: pointer
+  transition: 0.3s
+  font-weight: 600
+
+  &.round
+      border-radius: 40px
+      text-transform: none
+
+  &.arrow
+      padding: 15px 75px 15px 25px
+
+  &.arrow::after
+      content: url('/static/img/arrow--right--white.svg')
+      width: 36px
+      position: absolute
+      margin-left: 20px
+      transition: 0.3s
+
+  &.arrow:hover
+      padding-right: 95px
+
+  &.arrow:hover::after
+      margin-left: 40px
+
+  &.full
+      width: 100%
+
+  &.glow
+    color: $accent  
+    background: rgba($accent, 0.08)
   
-// spinner
-@mixin spinner
-  width: 70px
-  height: 70px
-  border: 3px solid #c9bfaa
-  border-bottom-color: $accent
-  border-radius: 100%
-  animation: spin 1200ms infinite linear
-  margin-left: 15px
+  &.glow:hover
+      background: rgba($accent, 0.15)
 
-@keyframes spin
-  100%
-    transform: rotate(360deg)
+.btn:hover
+    background: darken($accent,10% )
+
+.btn_icon
+  display: flex
+  align-items: center
+
+  &.nofill
+    background: none
+    padding: 0
+    color: $accent
+    font-size: 15px
+
+    img
+      margin-right: 10px
+
+  img
+    margin-right: 15px
+
+.btn_border
+  border: 2px solid $accent
+  color: $accent
+  background-color: white
+  border-radius: 5px
+
+.btn_border:hover
+  background-color: rgba($accent, 10%)
 
 
-.spinner
-  @include spinner
+
+// круглая кнопка с иконкой внутри
+.btn_circle_icon
+    border-radius: 50%
+    background: #f1f1f1
+    padding: 15px
+    position: relative
+    border: none
+    cursor: pointer
+    transition: 0.3s
+    display: flex
+    align-items: center
+    font-size: 16px
+    border: 1px solid $line
+
+.btn_circle_icon:hover
+    background: #cfcfcf
+
+.btn_circle_icon::after
+    position: relative
+    content: ' '
+    width: 18px
+    height: 18px
+    background-repeat: no-repeat
+    background-size: cover
+
+
+.like::after
+    background-image: url('/static/img/like--gray.svg')
+
+.cart::after
+    background-image: url('/static/img/cart--gray.svg')
+
+.plus::after
+    background-image: url('/static/img/plus--gray.svg')
+
+
+// ссылка обычная
+.link
+    font-weight: bold
+    color: $accent
+    cursor: pointer
+    transition: 0.3s
+    text-decoration: none
+
+.link:hover
+    color: darken($accent, 10%)
+    text-decoration: underline
+
+.btn_link
+    border-radius:30px
+    background: $accent
+    padding: 15px 20px
+    color: white
+
+    &.blocked
+        background: rgba($accent, 0.4)
+    
+    &.blocked:hover
+        background: rgba($accent, 0.4)
+        text-decoration: none
+
+
+
+// modal windows
+.modal
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  z-index: 100
+  display: flex
+  justify-content: center
+  align-items: center
+
+
+  &__shadow
+    width: 100%
+    height: 100vh
+    position: absolute
+    background: rgba(0, 0, 0, 0.3)
+    z-index: -1
+  
+  &__window
+    background-color: white
+    padding: 50px 100px
+    border-radius: 12px
+    text-align: center
+    width: 400px
+
+    button
+      margin-bottom: 30px
+
+    &__title
+      font-size: 32px
+      margin-bottom: 30px
+      font-weight: bold
+
+    &__content
+      position: relative
+
+    .hint
+      font-size: 14px
+      color: $description
+    
+  &__close
+    position: absolute
+    top: -180px
+    right: -150px
+    cursor: pointer

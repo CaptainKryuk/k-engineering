@@ -11,15 +11,17 @@ class Subscribe(AbstractDateTimeModel):
 
     status = models.CharField("Статус подписки", choices=SUB_STATUSES, default="sales", max_length=20)
 
-    email = models.EmailField("Емайл пользователя, которому отправлять новости")
+    name = models.CharField("Имя или компания", blank=True, max_length=255)
+
+    contact = models.CharField("Емайл пользователя, которому отправлять новости", max_length=255)
 
     def __str__(self) -> str:
-        return self.email
+        return self.contact
 
     def save(self, *args, **kwargs):
         """
-        Если email уже есть, то ничего не делаем
+        Если contact уже есть, то ничего не делаем
         """
-        same_emails = Subscribe.objects.filter(email=self.email).first()
-        if not same_emails:
+        same_contacts = Subscribe.objects.filter(contact=self.contact).first()
+        if not same_contacts:
             super().save(*args, **kwargs)

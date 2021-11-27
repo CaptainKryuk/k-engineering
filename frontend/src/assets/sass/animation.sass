@@ -34,3 +34,26 @@
 .float-enter-to 
   transform: translateX(0)
   opacity: 1
+
+
+// swiper settings
+.swiper-container
+    height: 100%
+  
+// spinner
+@mixin spinner
+  width: 70px
+  height: 70px
+  border: 3px solid #c9bfaa
+  border-bottom-color: $accent
+  border-radius: 100%
+  animation: spin 1200ms infinite linear
+  margin-left: 15px
+
+@keyframes spin
+  100%
+    transform: rotate(360deg)
+
+
+.spinner
+  @include spinner

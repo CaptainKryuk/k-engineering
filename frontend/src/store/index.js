@@ -7,9 +7,13 @@ export default createStore({
     server_media: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/media/" : "https://k-engineering.ru/media/",
 
     server_url: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000" : "https://k-engineering.ru",
+
     // toasts
     toasts: [],
   },
+  actions: {
+  },
+
   mutations: {
 
     DANGER_TOAST(state, args) {
@@ -49,5 +53,11 @@ export default createStore({
     }
   },
   actions: {
+  },
+
+  getters: {
+    price_list_url(state) {
+      return `${state.server_static}catalog/price.pdf`
+    }
   },
 })

@@ -21,7 +21,7 @@
           <div class="sidebar_item_detail" 
               v-for="(item, index) in menu"
               :key="index"
-              @click="routeTo(item.url)">
+              @click="routeTo(item.url, href=item.type === 'download' ? true : false)">
             <div class="sidebar_item_icon">
               <img :src="`/static/img/${item.icon}.svg`" width="26" height="26"/>
             </div>
@@ -99,9 +99,9 @@
       international более 25 лет и имеем огромный опыт работы с фабриками</p>
 
       <div class="content_buttons">
-        <button class="btn arrow" style="margin-right: 25px" @click="routeTo('/catalog')">каталог</button>
-        <button class="btn icon glow" @click="routeTo('/lk')">
-          <img src="@/assets/img/price-list--gray.svg" />
+        <button class="btn arrow" style="margin-right: 25px" @click="routeTo('/catalog')">Каталог</button>
+        <button class="btn btn_icon glow" @click="routeTo(price_list_url, href=true)">
+          <img src="@/assets/img/price-list--accent.svg" />
           Прайс-лист
         </button>
       </div>
@@ -159,7 +159,7 @@
               </div>
             </div>
 
-            <button :class="['btn', 'arrow', !is_desktop ? 'full' : '']" @click="routeTo(`/catalog/${material.name.toLowerCase()}`)">выбрать</button>
+            <button :class="['btn', 'arrow', !is_desktop ? 'full' : '']" @click="routeTo(`/catalog/${material.name.toLowerCase()}`)">Выбрать</button>
           </div>
 
           <!-- on desktop -->
@@ -182,7 +182,7 @@
 
 </div>
 
-<div class="home_menu">
+<div class="home_menu" id="about">
   <div class="home_menu__list">
     <div class="home_menu__detail" 
       v-for="(el, index) in small_menu" 
@@ -247,7 +247,7 @@
         <div class="input">
           <input v-model="email" type="email" required placeholder="Введите ваш email" />
         </div>
-        <button :class="['btn', !is_desktop ? 'full' : '']" type="submit">подписаться</button>
+        <button :class="['btn', !is_desktop ? 'full' : '']" type="submit">Подписаться</button>
 
       </div>
     </form>
@@ -276,7 +276,7 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
-import { mapMutations, mapState } from 'vuex';
+import { mapGetters, mapMutations, mapState } from 'vuex';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay, Parallax]);
@@ -301,15 +301,6 @@ export default {
 
       selected_material: 0,
 
-      menu: [
-        {name: 'Каталог', icon: 'catalog', url: '/catalog'},
-        {name: 'Прайс-лист', icon: 'price-list', url: '/price-list'},
-        {name: 'О нас', icon: 'about', url: '/about'},
-        {name: 'Личный кабинет', icon: 'lk', url: '/lk'},
-        {name: 'Наши услуги', icon: 'services', url: '/catalog'},
-        {name: 'Свяжитесь с нами', icon: 'contact', url: '#contact'}
-      ],
-
       small_menu: [
         {name: 'О нас', icon: 'about', url: '/about'},
         {name: 'Личный кабинет', icon: 'lk', url: '/lk'},
@@ -318,9 +309,9 @@ export default {
       ],
 
       services: [
-        {title: 'Подберите материал', text: 'Подберите материал для ваших изделий и получите его уже на следующий день. Весь материал, представленный в каталоге в наличии', icon: 'cart', button: 'каталог', url: '/catalog'},
-        {title: 'Личный кабинет', text: 'Отслеживание заказа, система скидок, персонализация и удобный функционал для быстрого получения нужного вам материала', icon: 'chart', button: 'войти', url: '/lk'},
-        {title: 'Решается все', text: 'Возникли вопросы при заказе? Нужен материал в день заказа? Напишите или позвоните нам, мы моментально решим все вопросы в течении часа', icon: 'laptop', button: 'написать', url: '#contact'}
+        {title: 'Подберите материал', text: 'Подберите материал для ваших изделий и получите его уже на следующий день. Весь материал, представленный в каталоге в наличии', icon: 'cart', button: 'Каталог', url: '/catalog'},
+        {title: 'Личный кабинет', text: 'Отслеживание заказа, система скидок, персонализация и удобный функционал для быстрого получения нужного вам материала', icon: 'chart', button: 'Войти', url: '/lk'},
+        {title: 'Решается все', text: 'Возникли вопросы при заказе? Нужен материал в день заказа? Напишите или позвоните нам, мы моментально решим все вопросы в течении часа', icon: 'laptop', button: 'Написать', url: '#contact'}
       ],
 
       email: '',
@@ -333,6 +324,7 @@ export default {
 
   computed: {
     ...mapState(['server']),
+    ...mapGetters(['price_list_url']),
 
     selected_materials() {
       return this.materials.filter((mat) => mat.id === this.selected_material)
@@ -340,6 +332,17 @@ export default {
 
     is_desktop() {
       return window.screen.width > 1200
+    },
+
+    menu() {
+      return [
+        {name: 'Каталог', icon: 'catalog', url: '/catalog'},
+        {name: 'Прайс-лист', icon: 'price-list', url: this.price_list_url, type: "download"},
+        {name: 'О нас', icon: 'about', url: '#about'},
+        {name: 'Личный кабинет', icon: 'lk', url: '/lk'},
+        {name: 'Наши услуги', icon: 'services', url: '#services'},
+        {name: 'Свяжитесь с нами', icon: 'contact', url: '#contact'}
+      ]
     }
   },
 
@@ -355,19 +358,27 @@ export default {
     },
 
     addSubscribe() {
-      this.$axios.post(`${this.server}subscribe/`,
-        {'email': this.email})
-        .then((response) => {
-          this.email = ''
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+      const mail_re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+      if (this.email.match(mail_re)) {
+        this.$axios.post(`${this.server}subscribe/`,
+          {'contact': this.email})
+          .then((response) => {
+            this.email = ''
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            })
+            this.SUCCESS_TOAST({title: 'Вы успешно подписались', text: 'Вы успешно подписались на рассылку скидок, Вам будут приходить только оповещения о скидках'})
           })
-          this.SUCCESS_TOAST({title: 'Вы успешно подписались', text: 'Вы успешно подписались на рассылку скидок, Вам будут приходить только оповещения о скидках'})
-        })
-        .catch((error) => {
-          this.DANGER_TOAST({title: "Ошибка во время запроса", text: 'Произошла ошибка во время выполнения запроса, мы уже ее заметили и пытаемся исправить'})
-        })
+          .catch((error) => {
+            this.DANGER_TOAST({title: "Ошибка во время запроса", text: 'Произошла ошибка во время выполнения запроса, мы уже ее заметили и пытаемся исправить'})
+          })
+      } else {
+        this.DANGER_TOAST({title: "Неверно введен E-mail", text: 'Введен некорректный E-mail, проверьте правильно ли введена Ваша электронная почта'})
+      }
+
+
     },
 
     nextImg() {
@@ -400,9 +411,14 @@ export default {
       this.show_menu = false
     },
 
-    routeTo(link) {
-      this.$router.push(link)
-    }
+    routeTo(link, href=false) {
+      this.show_menu = false
+      if (href) {
+        window.open(link)
+      } else {
+        this.$router.push(link)
+      }
+    },
   }
 }
 </script>

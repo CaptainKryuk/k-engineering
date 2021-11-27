@@ -42,6 +42,14 @@ export default {
 @include font('Lato', normal, 700, './assets/fonts/Lato/Lato-Bold.ttf')
 @include font('Lato', normal, 800, './assets/fonts/Lato/Lato-Heavy.ttf')
 
+// montseratt
+@include font('Montserrat', normal, 300, './assets/fonts/Montserrat/Montserrat-Light.ttf')
+@include font('Montserrat', normal, 400, './assets/fonts/Montserrat/Montserrat-Regular.ttf')
+@include font('Montserrat', normal, 500, './assets/fonts/Montserrat/Montserrat-Medium.ttf')
+@include font('Montserrat', normal, 600, './assets/fonts/Montserrat/Montserrat-SemiBold.ttf')
+@include font('Montserrat', normal, 700, './assets/fonts/Montserrat/Montserrat-Bold.ttf')
+@include font('Montserrat', normal, 800, './assets/fonts/Montserrat/Montserrat-Black.ttf')
+
 .route-enter-from
   opacity: 0
   transform: translateX(100px)
@@ -60,7 +68,7 @@ body
   margin: 0
 
 #app
-  font-family: 'Lato', sans-serif
+  font-family: 'Montserrat', sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   padding: 0

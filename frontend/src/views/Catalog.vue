@@ -23,16 +23,19 @@
       <div class="filter_select">
 
         <select-input v-model="collection"
-                      :options="['Все коллекции', 'ATELIER', 'HERITAGE', 'SPECTRUM', 'TEXTILE', 'METALLIC']"
+                      :options="['Все серии', 'ATELIER', 'HERITAGE', 'SPECTRUM', 'TEXTILE', 'METALLIC']"
                       icon="collection"
-                      placeholder="Коллекция"></select-input>
+                      placeholder="Серия"></select-input>
 
         <select-input v-model="design"
                       :options="filtered_collections"
                       icon="design"
-                      placeholder="Дизайн"></select-input>
+                      placeholder="Коллекция"></select-input>
 
-        <button class="btn btn_icon search" style="height: 50px">Найти</button>
+        <button class="btn btn_icon search" style="height: 50px">
+          <img src="@/assets/img/search--white.svg" />
+          Найти
+        </button>
       </div>
       
     </div>
@@ -42,7 +45,7 @@
   <div class="catalog__content">
     <div class="material__list" v-if="Object.keys(catalog).length && !loading">
       <div class="material__list_wrapper" v-for="(material, index) in filtered_catalog" :key="index">
-        <div class="material__list__detail">
+        <div class="material__list__detail" @click="routeTo(`/materials/${material.item_number}`)">
 
           <div class="detail_img">
             <img :src="`${server_url}/media/catalog/low/${getImgId(material)}`" width="155" height="155" alt="alt" v-if="material.img" />
@@ -68,8 +71,8 @@
           </div>
 
           <div class="detail_bottom">
-            <button class="btn_circle_icon like"></button>
-            <button class="btn_circle_icon cart"></button>
+            <button class="btn_circle_icon like" @click="test"></button>
+            <button class="btn_circle_icon cart" @click="routeTo(`/materials/${material.item_number}`)"></button>
           </div>
 
         </div>
@@ -108,9 +111,9 @@
       </div>
     </div>
   </div>
+</div>
 
   <my-footer></my-footer>
-</div>
 </template>
 
 <script>
@@ -139,7 +142,7 @@ export default {
       ],
 
       item_number: '',
-      collection: 'Все коллекции',
+      collection: 'Все серии',
       design: '',
 
       catalog: [],
@@ -157,7 +160,7 @@ export default {
           return false
         }
 
-        if (this.collection.length && this.collection !== 'Все коллекции') {
+        if (this.collection.length && this.collection !== 'Все серии') {
           if (this.collection !== material.collection.series.name) {
             return false
           }
@@ -182,7 +185,7 @@ export default {
       }
       if (this.collection.length) {
         this.design = ''
-        if (this.collection !== 'Все коллекции') {
+        if (this.collection !== 'Все серии') {
           return collections[this.collection]
         }
 
@@ -196,12 +199,18 @@ export default {
 
     if (this.$route.params.collection) {
       this.collection = this.$route.params.collection.toUpperCase()
-      this.INFO_TOAST({'title': `Выбрана коллекция ${this.$route.params.collection.toUpperCase()}`, 'text': "Выбрана определенная коллекция, Вы можете выбрать Все коллекции выбрав этот пункт в выпадающем фильтре"})
+      this.INFO_TOAST({'title': `Выбрана коллекция ${this.$route.params.collection.toUpperCase()}`, 'text': "Выбрана определенная коллекция, Вы можете выбрать Все серии выбрав этот пункт в выпадающем фильтре"})
     }
   },
 
   methods: {
     ...mapMutations(['DANGER_TOAST', 'SUCCESS_TOAST', 'INFO_TOAST']),
+
+    test(e) {
+      if (e) {
+        e.stopPropagation()
+      }
+    },
 
     getCatalog() {
       this.loading = true
@@ -216,7 +225,7 @@ export default {
     resetFilter() {
       this.design = ''
       this.item_number = ''
-      this.collection = 'Все коллекции'
+      this.collection = 'Все серии'
     },
 
     getImgId(material) {
@@ -225,6 +234,10 @@ export default {
       }
 
       return null
+    },
+
+    routeTo(link) {
+      this.$router.push(link)
     }
   }
 }

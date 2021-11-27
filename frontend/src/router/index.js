@@ -24,6 +24,18 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: () => import('../views/other/Test.vue')
+  },
+
+  {
+    path: '/materials/:item',
+    name: 'DetailMaterial',
+    component: () => import("../views/DetailMaterial.vue") 
+  },
+
+  {
+    path: '/lk',
+    name: 'Dashboard',
+    component: () => import("../views/Dashboard.vue")
   }
 ]
 

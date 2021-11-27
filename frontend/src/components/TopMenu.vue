@@ -11,7 +11,9 @@
 
   <div class="top_menu__elems desktop">
     <div class="top_menu__elems__detail" v-for="(el, index) in links" :key="index">
-      <router-link :to="el.url" :class="['link', el.classes]">{{ el.name }}</router-link>
+      <router-link :to="el.url" :class="['link', el.classes]" v-if="el.classes !== 'download'">{{ el.name }}</router-link>
+      
+      <a :href="el.url" target="_blank" class="link download" v-if="el.classes === 'download'">{{ el.name }}</a>
     </div>
   </div>
 </div>
@@ -52,20 +54,27 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: "TopMenu",
 
   data() {
     return {
-      links: [
-        {name: 'Главная', url: '/', icon: 'catalog'},
-        {name: 'Каталог', url: '/catalog', icon: 'catalog'},
-        {name: 'Прайс-лист', url: '/price-list', classes: 'download', icon: 'price-list'},
-        {name: 'Личный кабинет', url: '/lk', icon: 'lk', classes: 'btn_link blocked'}
-      ],
-
       show_menu: false
     }
+  },
+
+  computed: {
+    ...mapGetters(['price_list_url']),
+
+    links() {
+        return [
+        {name: 'Главная', url: '/', icon: 'catalog'},
+        {name: 'Каталог', url: '/catalog', icon: 'catalog'},
+        {name: 'Прайс-лист', url: this.price_list_url, classes: 'download', icon: 'price-list'},
+        {name: 'Личный кабинет', url: '/lk', icon: 'lk', classes: 'btn_link blocked'}
+      ]
+    } 
   },
 
   methods: {
