@@ -184,3 +184,10 @@ CSRF_COOKIE_HTTPONLY = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bestrongwb@gmail.com'
+EMAIL_HOST_PASSWORD = 'ExtOrd1613'

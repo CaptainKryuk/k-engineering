@@ -31,5 +31,3 @@ class Command(BaseCommand):
             if Path.is_file(full_img_path):
                 material.img = f'catalog/{img_path}'
                 material.save()
-
-            print(material.img)

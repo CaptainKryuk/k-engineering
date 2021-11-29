@@ -14,5 +14,6 @@ router.register('order', views.OrderViewSet, basename='order')
 router.register('material', views.MaterialViewSet, basename='material')
 
 urlpatterns = [
+  path('request/', views.request_view)
 ]
 urlpatterns += router.urls

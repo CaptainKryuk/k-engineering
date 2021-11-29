@@ -85,7 +85,11 @@
     <div class="material__other__list">
       <div class="other__list__detail" v-for="(mat, index) in other_collections" :key="index" @click="routeTo(`/materials/${mat.item_number}`)">
         <div class="detail__avatar">
-          <img :src="`${server_media}catalog/low/${getImgId(mat)}`" width="120" height="120" alt="" />
+          <div class="empty_img" v-if="!mat.img">
+              <img src="@/assets/img/sad-smile--gray.svg" width="30" height="30"/>
+              <span>Не найдено</span>
+          </div>
+          <img :src="`${server_media}catalog/low/${getImgId(mat)}`" v-if="mat.img" width="120" height="120" alt="" />
         </div>
         <div class="detail__text">{{ mat.item_number }}</div>
       </div>

@@ -14,9 +14,9 @@ class MaterialSerializer(serializers.ModelSerializer):
 
     
     def get_quantity(self, instance):
-        if instance.num > 2:
+        if instance.quantity > 1:
             return 'many'
-        elif instance.num > 0 and instance.num <= 2:
+        elif instance.quantity > 0 and instance.quantity <= 1:
             return 'not_many'
         else:
             return 'empty'

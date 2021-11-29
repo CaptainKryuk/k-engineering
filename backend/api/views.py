@@ -2,6 +2,7 @@ from rest_framework import views, viewsets
 from rest_framework.response import Response
 from catalog.models import Material
 from . import serializers
+from rest_framework.decorators import api_view
 
 
 class CatalogViewSet(viewsets.ViewSet):
@@ -42,3 +43,20 @@ class SubscribeViewSet(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+
+
+@api_view(['POST'])
+def request_view(request):
+    """
+    Заявка на звонок
+    """
+    from django.core.mail import send_mail
+
+    send_mail(
+        'Новая заявка на звонок', 
+        f"Новая заявка на звонок от {request.data['name']} данные {request.data['contact']}",
+        'bestrongwb@gmail.com',
+        ['bestrongwb@gmail.com'],
+        fail_silently=False)
+    
+    return Response('success')

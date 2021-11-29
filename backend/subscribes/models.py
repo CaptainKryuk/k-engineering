@@ -1,5 +1,6 @@
 from django.db import models
 from base.models import AbstractDateTimeModel
+from django.core.mail import send_mail
 
 # Create your models here.
 class Subscribe(AbstractDateTimeModel):
@@ -23,5 +24,15 @@ class Subscribe(AbstractDateTimeModel):
         Если contact уже есть, то ничего не делаем
         """
         same_contacts = Subscribe.objects.filter(contact=self.contact).first()
+
+        # отправка сообщения, что человек подписался
+        send_mail(
+            'Новая подписка', 
+            f'Новая подписка на скидки от {self.contact}',
+            'bestrongwb@gmail.com',
+            ['bestrongwb@gmail.com'],
+            fail_silently=False)
+
+        
         if not same_contacts:
             super().save(*args, **kwargs)

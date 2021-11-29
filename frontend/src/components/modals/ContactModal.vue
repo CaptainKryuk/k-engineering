@@ -19,7 +19,7 @@
 
     <p class="hint">
       Нет времени на заявку? Позвоните нам по номеру 
-      <a href="tel:+7 496 999-99-99">+7 496 999-99-99</a> 
+      <a href="tel:+74951423418">+7 (495) 142-34-18</a> 
       или напишите на  нашу электронную почту 
       <a href="mailto:info@k-engineering.ru">info@k-engineering.ru</a>
     </p>
@@ -76,7 +76,7 @@ export default {
       if (!flag) {
         this.DANGER_TOAST({title: 'Ошибка при заполнении', text: 'Электронная почта или телефон введены неверно, проверьте корректность введенных данных'})
       } else {
-        this.$axios.post(`${this.server}subscribe/`,
+        this.$axios.post(`${this.server}request/`,
           {
             name: this.name,
             contact: this.contact

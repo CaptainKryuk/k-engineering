@@ -38,5 +38,7 @@ class Material(AbstractDateTimeModel):
 
     img = models.ImageField('Картинка материала', upload_to="catalog", blank=True)
 
+    quantity = models.FloatField("Количество")
+
     def __str__(self) -> str:
         return self.color + ' - ' + self.item_number + ' - ' + self.collection.name

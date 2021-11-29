@@ -17,8 +17,6 @@ def edit():
       except:
         new_name = ''
 
-      print(new_name)
-
       if new_name:
         subprocess.call(f'mv results2/{file} results2/{new_name}', shell=True)
 

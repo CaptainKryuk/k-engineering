@@ -210,8 +210,8 @@
         &__text
             color: $description
             margin-bottom: 20px
-            line-height: 1.5
-            font-size: 14px
+            line-height: 1.7
+            font-size: 15px
 
         &__content
             .content__slides
@@ -624,7 +624,6 @@
 
                     &_text::after
                         margin-left: 25px
-                        content: 'В наличии'
                         position: relative
                         font-weight: 600
                         font-size: 14px
@@ -633,6 +632,19 @@
                         border-color: $n-success
                     .many::after
                         color: $n-success
+                        content: 'В наличии много'
+
+                    .not_many::before
+                        border-color: $n_warning
+                    .not_many::after
+                        border-color: $n_warning
+                        content: 'Не более 100 пог. м.'
+                        
+                    .empty::before
+                        border-color: $n_error
+                    .empty::after
+                        border-color: $n_error
+                        content: 'Закончился'
             
 
             .price_underbox
@@ -667,6 +679,18 @@
                     margin-bottom: 10px
                     img
                         border-radius: 10px
+
+                    .empty_img
+                        height: 100%
+                        border-radius: 10px
+                        border: 1px solid $line
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        align-items: center
+                        font-size: 12px
+                        font-style: italic
+
 
 
 .lk
