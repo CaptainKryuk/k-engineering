@@ -23,7 +23,7 @@
     <text-input field_name="Телефон или электронная почта" 
                 v-model="order.contact" 
                 :required="true"
-                placeholder='Например: info@k-engineering.ru' />
+                placeholder='Например: info@k-engine.ru' />
 
 
     <button type="submit" class="btn btn_border full" style="border-radius: 40px">Оформить заказ</button>
@@ -32,7 +32,7 @@
       Нет времени на оформление? Позвоните нам по номеру 
       <a href="tel:+74951423418">+7 (495) 142-34-18</a> 
       или напишите на нашу электронную почту 
-      <a href="mailto:info@k-engineering.ru">info@k-engineering.ru</a>
+      <a href="mailto:info@k-engine.ru">info@k-engine.ru</a>
     </p>
   </form> 
 </modal-window>

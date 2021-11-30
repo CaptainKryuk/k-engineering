@@ -391,3 +391,24 @@ input::placeholder
     top: -180px
     right: -150px
     cursor: pointer
+
+
+// hover info
+[hover_info]:hover::after
+  position: absolute
+  z-index: 10
+  width: 200px
+  font-size: 14px
+  top: 32px
+  right: 0
+  color: white
+  background: #000000
+  box-shadow: 0px 8px 12px rgba(201, 201, 201, 0.25)
+  padding: 10px 15px
+  border-radius: 5px
+
+.hover_price:hover::after
+  content: 'Цена будет выше при заказе меньше 100 погонных метров (1 ролика), все цены Вы можете посмотреть в нашем прайс-листе'
+
+.hover_existance:hover::after
+  content: 'Статус определяется в соответствии с количеством материала у нас на складе, если заказ очень большой и мы не имеем весь материал в наличии, то заказ будет сделан с фабрики'

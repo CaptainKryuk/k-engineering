@@ -2,11 +2,11 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    server: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/api/" : "https://k-engineering.ru/api/",
-    server_static: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/static/" : "https://k-engineering.ru/static/",
-    server_media: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/media/" : "https://k-engineering.ru/media/",
+    server: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/api/" : "https://k-engine.ru/api/",
+    server_static: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/static/" : "https://k-engine.ru/static/",
+    server_media: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000/media/" : "https://k-engine.ru/media/",
 
-    server_url: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000" : "https://k-engineering.ru",
+    server_url: process.env.NODE_ENV === 'development' ? "http://127.0.0.1:8000" : "https://k-engine.ru",
 
     // toasts
     toasts: [],

@@ -71,6 +71,7 @@ export default {
         return [
         {name: 'Главная', url: '/', icon: 'catalog'},
         {name: 'Каталог', url: '/catalog', icon: 'catalog'},
+        {name: 'Доставка', url: '/delivery', icon: 'catalog'},
         {name: 'Прайс-лист', url: this.price_list_url, classes: 'download', icon: 'price-list'},
         {name: 'Личный кабинет', url: '/lk', icon: 'lk', classes: 'btn_link blocked'}
       ]

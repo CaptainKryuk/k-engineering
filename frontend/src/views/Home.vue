@@ -303,6 +303,7 @@ export default {
 
       small_menu: [
         {name: 'О нас', icon: 'about', url: '/about'},
+        {name: 'Доставка', icon: 'box', url: '/delivery'},
         {name: 'Личный кабинет', icon: 'lk', url: '/lk'},
         {name: 'Наши услуги', icon: 'services', url: '#services'},
         {name: 'Свяжитесь с нами', icon: 'contact', url: '#contact'}
@@ -338,10 +339,11 @@ export default {
       return [
         {name: 'Каталог', icon: 'catalog', url: '/catalog'},
         {name: 'Прайс-лист', icon: 'price-list', url: this.price_list_url, type: "download"},
+        {name: 'Доставка', icon: 'box', url: '/delivery'},
         {name: 'О нас', icon: 'about', url: '#about'},
         {name: 'Личный кабинет', icon: 'lk', url: '/lk'},
         {name: 'Наши услуги', icon: 'services', url: '#services'},
-        {name: 'Свяжитесь с нами', icon: 'contact', url: '#contact'}
+        {name: 'Подписка на скидки', icon: 'contact', url: '#contact'}
       ]
     }
   },

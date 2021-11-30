@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import VueClipboard from 'vue-clipboard2'
 
 let app = createApp(App)
 
@@ -15,6 +16,8 @@ let components = [...inputs]
 components.forEach(component => {
   app.component(component.name, component)
 })
+
+app.use(VueClipboard)
 
 
 // directives

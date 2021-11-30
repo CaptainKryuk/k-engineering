@@ -1,5 +1,5 @@
 {
-  "name": "k-engineering",
+  "name": "k-engine",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "sass-loader": "^10.1.1",
     "swiper": "^6.8.4",
     "vue": "^3.0.0",
+    "vue-clipboard2": "^0.3.3",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

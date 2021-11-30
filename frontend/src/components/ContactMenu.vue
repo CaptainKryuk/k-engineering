@@ -1,7 +1,7 @@
 <template>
   <div class="contact_menu">
     <div class="contact_menu__content">
-      <a href="mailto:andrey.kryukov@deploy-x.com" class="link nocolor">andrey.kryukov@deploy-x.com</a>
+      <a href="mailto:info@k-engine.ru" class="link nocolor">info@k-engine.ru</a>
       <a href="tel:+74951423418" class="link nocolor">+7 (495) 142-34-18</a>
       <span class="link" @click="show_contact = true">Связаться с нами</span>
     </div>

@@ -10,14 +10,14 @@
     <h1>Переплетный материал Balacron {{ material.collection.name }} {{ material.item_number }}</h1>
 
     <div class="material__top__buttons">
-      <button class="btn btn_icon nofill">
-        <img src="@/assets/img/share--accent.svg" />
+      <button class="btn btn_icon nofill" @click="toFavorites()">
+        <img src="@/assets/img/like--accent.svg" />
         В избранное
       </button>
 
-      <button class="btn btn_icon nofill">
-        <img src="@/assets/img/like--accent.svg" />
-        Поделиться
+      <button class="btn btn_icon nofill" @click="copyLink()">
+        <img src="@/assets/img/share--accent.svg" />
+        Скопировать ссылку
       </button>
     </div>
   </div>
@@ -25,7 +25,12 @@
   <div class="material__content">
     <div class="material__content__avatar">
       <div class="material_avatar">
-        <img :src="`${server_media}catalog/high/${getImgId()}`" width="500" height="500" alt="" />
+        <div class="empty_img" v-if="!material.img">
+          <img src="@/assets/img/sad-smile--gray.svg" width="46" height="46" alt=""/>
+          <span>Не найдено</span>
+        </div>
+
+        <img :src="`${server_media}catalog/high/${getImgId()}`" width="500" height="500" alt="" class="img" v-if="material.img" />
       </div>
     </div>
 
@@ -42,38 +47,38 @@
 
       <div class="price_box">
         <div class="price_box__top">
-          <p class="price_box__top__text">Цена за 1 погонный метр</p>
-          <div class="price_box__top__img">
+          <p class="price_box__top__text">Цена от 100 погонных метров</p>
+          <div class="price_box__top__img hover_price" hover_info>
             <img src="@/assets/img/question--gray.svg" />
           </div>
         </div>
 
         <p class="price_box__price">
-          {{ material.collection.price1 }} <span class="rub">₽</span>
+          {{ material.collection.price2 }} <span class="rub">₽</span>
         </p>
 
         <div class="price_box__existance">
           <p :class="['price_box__existance_text', material.quantity]"></p>
-          <div class="price_box__existance__img">
+          <div class="price_box__existance__img hover_existance" hover_info>
             <img src="@/assets/img/question--gray.svg" />
           </div>
         </div>
 
-        <button class="btn btn_icon nofill">
+        <button class="btn btn_icon nofill" @click="show_appear = true">
           <img src="@/assets/img/notification--accent.svg" />
-          Узнавать о скидках
+          Сообщить о наличии
         </button>
 
         <button class="btn btn_border full" @click="show_modal = true">Связаться с менеджером</button>
       </div>
 
       <div class="price_underbox">
-        <button class="btn btn_icon glow">
+        <button class="btn btn_icon glow" @click="routeTo('/delivery#delivery_express')">
           <img src="@/assets/img/box--accent.svg" />
           Экспресс-доставка
         </button>
 
-        <p class="underbox_hint">Что такое экспресс-доставка?</p>
+        <p class="underbox_hint" @click="routeTo('/delivery#delivery_express')">Что такое экспресс-доставка?</p>
       </div>
     </div>
   </div> 
@@ -104,6 +109,12 @@
              v-if="Object.keys(material).length"
              @close="show_modal = false"></order-modal>
 
+<appear-modal :material="getMaterialName()"
+              :show="show_appear"
+              title="Подписаться на появление материала в наличии"
+              v-if="Object.keys(material).length"
+              @close="show_appear = false"></appear-modal>
+
 <my-footer></my-footer>
 </template>
 
@@ -113,7 +124,8 @@ import Breadcrumbs from '../components/Breadcrumbs.vue'
 import TopMenu from '../components/TopMenu.vue'
 import Footer from '../components/Footer.vue'
 import OrderModal from '../components/modals/OrderModal.vue'
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
+import AppearModal from '../components/modals/AppearModal.vue'
 
 export default {
   name: "DetailMaterial",
@@ -123,7 +135,8 @@ export default {
     'top-menu': TopMenu,
     'breadcrumbs': Breadcrumbs,
     'my-footer': Footer,
-    'order-modal': OrderModal
+    'order-modal': OrderModal,
+    'appear-modal': AppearModal
   },
 
   data() {
@@ -138,6 +151,7 @@ export default {
       other_collections: [],
 
       show_modal: false,
+      show_appear: false,
     }
   },
 
@@ -150,7 +164,7 @@ export default {
           {name: 'Коллекция', result: this.material.collection.name},
           {name: 'Серия', result: this.material.collection.series.name},
           {name: 'Цвет', result: this.material.color},
-          {name: 'Материал', result: "Винил"},
+          {name: 'Материал', result: this.material.item_number.length > 4 ? 'Винил' : 'Ткань'},
           {name: 'Размер', result: this.material.collection.size},
           {name: 'Плотность', result: '270 g/m'},
           {name: 'Артикул', result: this.material.item_number},
@@ -177,9 +191,19 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['INFO_TOAST', 'SUCCESS_TOAST']),
 
     getMaterialName() {
       return `${this.material.collection.name} ${this.material.item_number}`
+    },
+
+    toFavorites() {
+      this.INFO_TOAST({title: "Материал добавлен", text: "Материал добавлен в избранное, он будет отображаться первым"})
+    },
+
+    copyLink() {
+      this.$copyText(`https://k-engine.ru${this.$route.fullPath}`)
+      this.SUCCESS_TOAST({title: "Ссылка на материал скопирована", text: "Ссылка на материал сохранена в Вашем буфере обмена, Вы можете вставить ее с помощью Ctrl+V"})
     },
 
     getMaterial() {

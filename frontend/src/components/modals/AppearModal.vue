@@ -4,13 +4,18 @@
     <img src="@/assets/img/close--black.svg" width="42" height="42" alt="" />
   </div>
   <form @submit.prevent="sendRequest()">
+
+    <text-input field_name="Материал" 
+                v-model="material" 
+                :required="true"
+                :disabled="true" />
     <text-input field_name="Ваше имя или компания" 
-                v-model="name" 
+                v-model="subscribe.name" 
                 :required="true" 
                 placeholder='Например: "ООО К-инжиниринг"' />
 
     <text-input field_name="Телефон или электронная почта" 
-                v-model="contact" 
+                v-model="subscribe.contact" 
                 :required="true"
                 placeholder='Например: info@k-engine.ru' />
 
@@ -44,13 +49,15 @@ export default {
   
   props: {
     'title': String,
-    'show': Boolean
+    'show': Boolean,
+    'material': String
   },
 
   data() {
     return {
-      name: '',
-      contact: ''
+      subscribe: {
+        status: 'material'
+      }
     }
   },
 
@@ -67,23 +74,22 @@ export default {
 
       let flag = false
 
-      if (this.contact.match(mail_re)) {
+      if (this.subscribe.contact.match(mail_re)) {
         flag = true
-      } else if (this.contact.match(phone_re)) {
+      } else if (this.subscribe.contact.match(phone_re)) {
         flag = true
       } 
 
       if (!flag) {
         this.DANGER_TOAST({title: 'Ошибка при заполнении', text: 'Электронная почта или телефон введены неверно, проверьте корректность введенных данных'})
       } else {
-        this.$axios.post(`${this.server}request/`,
-          {
-            name: this.name,
-            contact: this.contact
-          })
+        this.subscribe.material = this.material
+        this.$axios.post(`${this.server}subscribe/`,
+          this.subscribe)
           .then((response) => {
+            this.subscribe = {status: 'material'}
             this.$emit('close')
-            this.SUCCESS_TOAST({title: "Заявка отправлена", text: "Заявка на звонок отправлена, мы перезвоним Вам в течении 10 минут"})
+            this.SUCCESS_TOAST({title: "Подписка на материал оформлена", text: "Подписка на материал оформлена, когда материал появится в наличии, мы отправим Вам письмо или СМС на указанную почту или номер телефона"})
           })
       }
 

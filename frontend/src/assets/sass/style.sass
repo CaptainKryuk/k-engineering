@@ -538,7 +538,16 @@
                 height: 530px
                 padding: 5px
                 border: 1px solid $line
-                img
+                .empty_img
+                    height: 100%
+                    border-radius: 10px
+                    border: 1px solid $line
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    font-style: italic
+                .img
                     width: 100%
                     height: 100%
                     border-radius: 5px
@@ -584,6 +593,7 @@
                     &__img
                         display: flex
                         align-items: center
+                        position: relative
 
                     &__text
                         color: $hint
@@ -718,6 +728,8 @@
                 height: 320px
             
 
+.delivery
+    padding: 0 $padding
 
 .footer
     padding: 40px $padding
@@ -889,7 +901,7 @@
         padding-right: $padding
         border-bottom: 1px solid $line
         &__elems
-            width: 50%
+            width: 60%
             display: flex
             justify-content: space-between
 
@@ -1159,6 +1171,48 @@
                     margin-right: auto
                     margin-left: auto
 
+
+    .delivery
+        padding: 50px $padding
+
+        &__content
+            display: flex
+            margin-top: 50px
+            
+            .text_content
+                width: 60%
+
+                h1
+                    margin: 40px 0
+
+                h3
+                    margin: 20px 0
+                
+                p
+                    margin-bottom: 10px
+                    line-height: 1.7
+
+            &__menu
+                width: 30%
+                margin-right: 20px
+
+                .menu_elem
+                    margin-bottom: 15px
+                    cursor: pointer
+
+                    .h1
+                        font-weight: bold
+                        font-size: 15px
+
+                    .h3
+                        padding-left: 15px
+                        font-size: 14px
+
+                    a
+                        color: $text
+
+                    a:hover
+                        text-decoration: underline
     .footer
         padding-left: $padding
         padding-right: $padding
