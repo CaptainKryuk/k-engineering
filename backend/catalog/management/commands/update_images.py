@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self, *args, **kwargs):
-        path = PurePath(settings.BASE_DIR).joinpath('media').joinpath('catalog')
+        path = PurePath(settings.BASE_DIR).joinpath('media').joinpath('catalog').joinpath('high_all')
         files = []
         for address, dirs, files in os.walk(path):
             files = files 
