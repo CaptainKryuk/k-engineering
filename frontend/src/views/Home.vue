@@ -248,16 +248,18 @@
           <input v-model="email" type="email" required placeholder="Введите ваш email" />
         </div>
         <button :class="['btn', !is_desktop ? 'full' : '']" type="submit">Подписаться</button>
+      </div>
 
+      <div class="form_info">
+        <p>
+          Нажимая кнопку "Подписаться", вы соглашаетесь с 
+          <a href="/policy">правилами обработки персональных данных</a>
+        </p>
       </div>
     </form>
-
-  <div class="contact__footer">
-    <div class="divider"></div>
-
-    <img src="@/assets/img/logo.svg" width="204" height="80" alt="" />
-  </div>
 </div>
+
+<my-footer></my-footer>
 
 </section>
 </transition>
@@ -277,6 +279,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import { mapGetters, mapMutations, mapState } from 'vuex';
+import Footer from '../components/Footer'
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay, Parallax]);
@@ -287,7 +290,8 @@ export default {
   components: {
     'contact-menu': ContactMenu,
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    'my-footer': Footer
   },
 
   data() {
@@ -346,6 +350,10 @@ export default {
         {name: 'Подписка на скидки', icon: 'contact', url: '#contact'}
       ]
     }
+  },
+
+  mounted() {
+    document.title = 'Главная | К-инжиниринг' 
   },
 
   methods: {

@@ -24,6 +24,12 @@ export default {
     return {
       show_contact: false
     }
+  },
+
+  methods: {
+    close() {
+      this.show_contact = false
+    }
   }
 }
 </script>

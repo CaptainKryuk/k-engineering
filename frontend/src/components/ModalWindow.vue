@@ -1,22 +1,22 @@
 <template>
-<div class="modal" v-show="show">
-  <transition name="fade" appear>
-    <div class="modal__shadow" v-show="show" @click="$emit('close')"></div>
-  </transition>
+  <transition name="fade">
+    <div class="modal" v-show="show">
 
-  <transition name="fade" appear>
-    <div class="modal__window" v-show="show">
-      <div class="modal__window__title">
-        <p>{{ title }}</p>
-      </div>
-      <div class="modal__window__content">
-        <slot></slot> 
-      </div>
+        <div class="modal__shadow" @click="close"></div>
+
+        <div class="modal__window">
+          <div class="modal__window__title">
+            <p>{{ title }}</p>
+          </div>
+          <div class="modal__window__content">
+            <slot></slot> 
+          </div>
+
+        </div>
 
     </div>
-  </transition>
 
-</div>
+  </transition>
 </template>
 
 <script>
@@ -30,6 +30,12 @@ export default {
 
   data() {
     return {}
+  },
+
+  methods: {
+    close() {
+      this.$emit('close')
+    }
   }
 }
 </script>

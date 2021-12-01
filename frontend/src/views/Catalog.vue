@@ -51,8 +51,8 @@
             <img :src="`${server_url}/media/catalog/low/${getImgId(material)}`" width="155" height="155" alt="alt" v-if="material.img" />
 
             <div class="absent__img" v-if="!material.img">
-              <img src="@/assets/img/sad-smile--gray.svg" width="36" height="36"/>
-              <span>Не найдено</span>
+              <img src="@/assets/img/sand-clock--gray.svg" width="36" height="36"/>
+              <span>Будет позже</span>
             </div>
           </div>
 
@@ -196,6 +196,8 @@ export default {
 
   mounted() {
     this.getCatalog()
+
+    document.title = 'Каталог | К-инжиниринг' 
 
     if (this.$route.params.collection) {
       this.collection = this.$route.params.collection.toUpperCase()

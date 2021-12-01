@@ -49,6 +49,10 @@ export default {
         {name: 'Личный кабинет', link: ''},
       ]
     }
+  }, 
+
+  mounted() {
+    document.title = 'Личный кабинет | К-инжиниринг' 
   }
 }
 </script>

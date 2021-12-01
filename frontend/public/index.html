@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="yandex-verification" content="412ea70caeaaa8dd" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>К-инжиниринг</title>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
   </head>
   <body>
     <noscript>
@@ -14,4 +17,24 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+
+  <script type="text/javascript">
+    ymaps.ready(init);
+      function init(){
+          var myMap = new ymaps.Map("map", {
+              center: [55.51973502, 37.77431270],
+              zoom: 10
+          });
+
+          myGeoObject = new ymaps.GeoObject({
+              // Описание геометрии.
+              geometry: {
+                  type: "Point",
+                  coordinates: [55.51973502, 37.77431270]
+              },
+          })
+
+          myMap.geoObjects.add(myGeoObject)
+      }
+  </script>
 </html>

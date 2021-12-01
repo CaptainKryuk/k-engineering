@@ -43,7 +43,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default=None)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", True)
 
-ALLOWED_HOSTS = ['api.k-engine.ru']
+ALLOWED_HOSTS = ['api.k-engine.ru', '127.0.0.1']
 
 
 # Application definition

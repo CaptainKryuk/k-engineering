@@ -19,7 +19,11 @@
                 :required="true"
                 placeholder='Например: info@k-engine.ru' />
 
+    <p class="form_info">Нажимая кнопку "Оставить заявку", вы соглашаетесь с 
+      <a href="/policy">правилами обработки персональных данных</a>
+    </p>
 
+    
     <button type="submit" class="btn btn_border full" style="border-radius: 40px">Оставить заявку</button>
 
     <p class="hint">

@@ -26,8 +26,8 @@
     <div class="material__content__avatar">
       <div class="material_avatar">
         <div class="empty_img" v-if="!material.img">
-          <img src="@/assets/img/sad-smile--gray.svg" width="46" height="46" alt=""/>
-          <span>Не найдено</span>
+          <img src="@/assets/img/sand-clock--gray.svg" width="46" height="46" alt=""/>
+          <span>Будет позже</span>
         </div>
 
         <img :src="`${server_media}catalog/high/${getImgId()}`" width="500" height="500" alt="" class="img" v-if="material.img" />
@@ -91,8 +91,8 @@
       <div class="other__list__detail" v-for="(mat, index) in other_collections" :key="index" @click="routeTo(`/materials/${mat.item_number}`)">
         <div class="detail__avatar">
           <div class="empty_img" v-if="!mat.img">
-              <img src="@/assets/img/sad-smile--gray.svg" width="30" height="30"/>
-              <span>Не найдено</span>
+              <img src="@/assets/img/sand-clock--gray.svg" width="30" height="30"/>
+              <span>Будет позже</span>
           </div>
           <img :src="`${server_media}catalog/low/${getImgId(mat)}`" v-if="mat.img" width="120" height="120" alt="" />
         </div>
@@ -188,6 +188,7 @@ export default {
 
   mounted() {
     this.getMaterial()
+    document.title = 'Материал | К-инжиниринг' 
   },
 
   methods: {

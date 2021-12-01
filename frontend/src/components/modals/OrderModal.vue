@@ -25,6 +25,9 @@
                 :required="true"
                 placeholder='Например: info@k-engine.ru' />
 
+    <p class="form_info">Нажимая кнопку "Оформить заказ", вы соглашаетесь с 
+      <a href="/policy">правилами обработки персональных данных</a>
+    </p>
 
     <button type="submit" class="btn btn_border full" style="border-radius: 40px">Оформить заказ</button>
 

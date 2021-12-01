@@ -39,10 +39,24 @@ const routes = [
   },
 
   {
+    path: '/requisites',
+    name: 'Requisites',
+    component: () => import("../views/Requisites.vue")
+  },
+
+  {
+    path: '/policy',
+    name: 'policy',
+    component: () => import("../views/Policy.vue")
+  },
+
+  {
     path: '/lk',
     name: 'Dashboard',
     component: () => import("../views/Dashboard.vue")
-  }
+  },
+
+  { path: '/:pathMatch(.*)*', component: () => import("../views/other/404.vue") },
 ]
 
 const router = createRouter({

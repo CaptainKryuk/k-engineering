@@ -131,6 +131,10 @@ export default {
     }
   },
 
+  mounted() {
+    document.title = 'Доставка | К-инжиниринг' 
+  },
+
   methods: {
     scrollTo(id) {
       let elem = document.getElementById(id)
