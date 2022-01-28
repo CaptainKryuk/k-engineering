@@ -54,7 +54,7 @@
         </div>
 
         <p class="price_box__price">
-          {{ material.collection.price2 }} <span class="rub">₽</span>
+          {{ material.collection.price2 }} <span class="rub">€</span>
         </p>
 
         <div class="price_box__existance">
